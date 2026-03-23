@@ -1,26 +1,28 @@
-name: Auto Restart Vercel Every 43 Minutes
+name: Run Bot 6 Hours
 
 on:
   schedule:
-    - cron: "*/43 * * * *"
+    - cron: "0 */6 * * *"   # පැය 6කට වරක් run වෙයි
   workflow_dispatch:
 
 jobs:
-  restart:
+  run-bot:
     runs-on: ubuntu-latest
+    timeout-minutes: 360   # 6 hours
 
     steps:
-      - name: Checkout Repo
+      - name: 📥 Checkout repo
         uses: actions/checkout@v3
 
-      - name: Update Restart File
-        run: |
-          echo "Restart: $(date +%s)" > restart.txt
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
 
-      - name: Commit Changes
+      - name: 📦 Install dependencies
+        run: npm install
+
+      - name: ▶️ Run bot (6 hours loop)
         run: |
-          git config --global user.name "vercel-bot"
-          git config --global user.email "bot@vercel.com"
-          git add restart.txt
-          git commit -m "Auto restart $(date)" || echo "No changes"
-          git push
+          echo "Bot started..."
+          timeout 6h node index.js
