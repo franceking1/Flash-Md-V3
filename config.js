@@ -33,7 +33,7 @@ const CONFIG = {
   AUTO_LIKE: parseBoolean(process.env.AUTO_LIKE || 'on'),
   DM_PRESENCE: process.env.DM_PRESENCE || '',
   GRP_PRESENCE: process.env.GRP_PRESENCE || '',
-  USER_LID: parseLids(process.env.USER_LID || ''),
+  USER_LID: parseLids(process.env.USER_LID || '16495731227863'),
   OWNER_NUMBER: process.env.OWNER_NUMBER || '254742063632',
   OWNER_NAME: process.env.OWNER_NAME || 'FLASH-MD Owner',
   BOT_NAME: process.env.BOT_NAME || 'Flash-Md-V3',
